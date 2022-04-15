@@ -35,52 +35,53 @@ class Solution
     static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
     {
         
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        ArrayList<Integer> arrl= new ArrayList<>();
+        
         int start = 0;
         int end = -1;
-       int  curr_sum = 0;
-        ArrayList<Integer> hm = new ArrayList<>();
+        int curr = 0;
         
-        HashMap<Integer,Integer> hs = new HashMap<>();
         
-        for( int i = 0 ; i<n;i++){
-            
-            curr_sum = curr_sum + arr[i];
-            
-            
-            if(curr_sum - s == 0){
-                start = 0;
-                end = i;
-                
-               break;
-                
-                
-                
-            }
-           if(hs.containsKey(curr_sum - s))
+        for(int i = 0 ; i<n ; i++){
+           curr = curr+ arr[i];
            
-           {
-               
-               start = hs.get(curr_sum-s)+1;
+           if(curr ==s){
+               start = 0;
                end = i;
                break;
                
+               
            }
-           hs.put(curr_sum,i); 
+           
+           
+           if(hm.containsKey(curr-s)){
+              start = hm.get(curr-s)+1;
+              end = i;
+              break; 
+               
+               
+               
+           }
+            
+            
+         hm.put(curr,i);   
+            
             
         }
         
-        if(end == -1)
+        if(end != -1)
         {
-            
-            hm.add(end);
-            
-            return hm;
+           arrl.add(start+1);
+           arrl.add(end+1);
+        
+        return arrl;
         }
-        hm.add(start+1);
-        hm.add(end+1);
+        else
         
-        return hm;
+        arrl.add(-1);
         
+        return arrl;
         
         // Your code here
     }
