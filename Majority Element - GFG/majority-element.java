@@ -32,39 +32,47 @@ class Solution
 {
     static int majorityElement(int a[], int size)
     {
-        HashMap<Integer,Integer> hs = new HashMap<>();
-        
-         for( int i = 0 ; i<size; i++){
-             
-             
-             if(!hs.containsKey(a[i]))
-                 hs.put(a[i],1);
-                 
-            else
-             hs.put(a[i],hs.get(a[i])+1);
-             
-             
-             
-             
-             
-             
-             
-         }
-         
+       
+       int count = 0;
+       int candidate = -1;
+       
        for( int i = 0 ; i<size ; i++){
            
-           if(hs.get(a[i]) > size/2)
-             return a[i];
+           if( count == 0){
+               candidate = a[i];
+               count ++;
+               
+               
+           }else{
+               if( a[i] == candidate)
+                 count ++;
+                else
+                
+                 count --;
+               
+               
+               
+               
+           }
            
            
            
-           
-           
-           
-       }  
+       }
+      count = 0;
+      
+      for( int i = 0 ; i<size;i++){
+          
+          
+          
+          if(a[i] == candidate)
+            count ++;
+      }
+      
+      if( count > size/2)
+          return candidate;
        
-       return -1; 
-        
+       
+       return -1;
         // your code here
     }
 }
