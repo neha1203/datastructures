@@ -34,54 +34,50 @@ class Solution
     //Function to find a continuous sub-array which adds up to a given number.
     static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
     {
-        
-        HashMap<Integer,Integer> hm = new HashMap<>();
-        ArrayList<Integer> arrl= new ArrayList<>();
-        
-        int start = 0;
-        int end = -1;
+        ArrayList<Integer> al = new ArrayList<>();
+        HashMap<Integer,Integer> hs = new HashMap<>();
         int curr = 0;
-        
-        
-        for(int i = 0 ; i<n ; i++){
-           curr = curr+ arr[i];
-           
-           if(curr ==s){
-               start = 0;
-               end = i;
-               break;
-               
-               
-           }
-           
-           
-           if(hm.containsKey(curr-s)){
-              start = hm.get(curr-s)+1;
+        int start = 0;
+        int end = -1;;
+        for (int i = 0 ; i<n ; i++){
+            
+            
+            curr = curr + arr[i];
+            
+            if( curr == s){
+                start = 0;
+                end = i;
+                break;
+                
+            }
+           // hs.put(0,-1);
+            
+          if(hs.containsKey(curr-s)){
+              start = hs.get(curr-s)+1;
               end = i;
-              break; 
-               
-               
-               
-           }
+              break;
+              
+              
+          }  
+          else
+          
+           hs.put(curr,i);
             
             
-         hm.put(curr,i);   
             
             
         }
         
-        if(end != -1)
-        {
-           arrl.add(start+1);
-           arrl.add(end+1);
-        
-        return arrl;
+        if( end != -1){
+           al.add(start+1);
+           al.add(end+1);
+           return al;
+            
         }
         else
-        
-        arrl.add(-1);
-        
-        return arrl;
+          al.add(-1);
+          
+          return al;
         
         // Your code here
     }
