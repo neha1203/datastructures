@@ -31,35 +31,37 @@ public class GFG {
 
 class Solution {
     int getPairsCount(int[] arr, int n, int k) {
-        HashMap<Integer,Integer> hs = new HashMap<Integer,Integer>();
-        int curr_sum = 0;
+        int sum = k;
+        HashMap<Integer,Integer> hs = new HashMap<>();
         int count = 0;
         
+        for( int i = 0 ; i<n ; i++){
             
-        
-        for( int i = 0 ; i<n ;i++){
+            if(!hs.containsKey(arr[i]))
+              hs.put(arr[i],1);
             
-           // curr_sum = curr_sum+arr[i];
-            
-             if(hs.containsKey(k-arr[i]))
-               count = count+ hs.get(k-arr[i]);
-             
-             
-             if(hs.containsKey(arr[i]))
-                hs.put(arr[i],hs.get(arr[i])+1);
-                
-                
             else
-            hs.put(arr[i],1);
-          
-              
-              
-
+            hs.put(arr[i],hs.get(arr[i])+1);
+            
+            
         }
         
-        return count;
+      for( int i = 0 ; i<n;i++){
+          
+          if(hs.containsKey(sum-arr[i]))
+            count = count + hs.get(sum-arr[i]);
+          
+          if(sum-arr[i] == arr[i])
+            count--;
+          
+          
+          
+          
+      }  
         
-     
+      return count/2;  
+        
+        
         // code here
     }
 }
