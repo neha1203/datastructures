@@ -1,6 +1,7 @@
 // { Driver Code Starts
 import java.io.*;
 import java.util.*;
+import java.util.Map.Entry;
 
 class GFG {
     public static void main(String[] args) {
@@ -22,32 +23,35 @@ class GFG {
 
 class Solution {
     public static ArrayList<Integer> duplicates(int arr[], int n) {
-        ArrayList<Integer> hm = new ArrayList<>();
         
-        for( int i = 0 ; i<n ; i++){
+        
+        ArrayList<Integer> al = new ArrayList<>();
+        
+        
+        for( int i = 0 ; i<n ;i++){
             
             int index = arr[i]%n;
-            arr[index] = arr[index] + n;
-            
-        }
-        
-        for( int i = 0 ; i<n ; i++){
-            
-            if((arr[i]/n)>=2)
-            hm.add(i);
-            
+            arr[index] = arr[index]+n;
             
             
         }
         
-        if(hm.size()>0)
-          return hm;
+        for( int i = 0 ; i<n ;i++){
+            if(arr[i]/n >= 2)
+            al.add(i);
+            
+            
+            
+        }
+        
+        
+        if(al.size()>0)
+          return al;
           
           else
-          hm.add(-1);
-        
-        return hm;
-        
+           al.add(-1);
+          
+          return al;
         // code here
     }
 }
