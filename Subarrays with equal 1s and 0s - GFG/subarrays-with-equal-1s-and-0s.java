@@ -33,38 +33,39 @@ class Solution
     //Function to count subarrays with 1s and 0s.
     static int countSubarrWithEqualZeroAndOne(int arr[], int n)
     {
+        HashMap<Integer,Integer> hs = new HashMap<Integer,Integer>();
+        int curr = 0;
+        int k = 0;
         
-        HashMap<Integer,Integer> hs = new HashMap<>();
-        int curr_sum = 0;
-        int count = 0;
-        
-        
-        for( int i = 0 ; i<n ;i++){
-            if(arr[i] == 0)
-               arr[i] = -1;
-               
-            curr_sum = curr_sum + arr[i];
-            if(curr_sum == 0)
-              count++;
-              
-            if(hs.containsKey(curr_sum))
-            
-              count = count + hs.get(curr_sum);
-            
-            if(!hs.containsKey(curr_sum))
-                 hs.put(curr_sum, 1);
-                else
-                
-            hs.put(curr_sum, hs.get(curr_sum)+1);
-            
-            
-            
-            
+        for(int i = 0 ; i<n ; i++)
+        {
+            arr[i] = arr[i]==0?-1:1;
             
             
         }
         
-        return count;
+        
+        for( int i = 0 ; i<n ; i++){
+            
+            curr = curr + arr[i];
+            
+            if(curr == 0)
+            k++;
+            
+            
+            if(hs.containsKey(curr))
+            
+               k = k + hs.get(curr);
+            
+           if(!hs.containsKey(curr))
+              hs.put(curr,1);
+             else
+             
+               hs.put(curr, hs.get(curr)+1);
+        
+        }
+       return k; 
+        
         
         // add your code here
     }
