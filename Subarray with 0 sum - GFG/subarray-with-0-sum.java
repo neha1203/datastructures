@@ -44,48 +44,45 @@ class Solution{
     static boolean findsum(int arr[],int n)
     {
         
-        
         HashMap<Integer,Integer> hs = new HashMap<Integer,Integer>();
         
-         int sum = 0;
-         
-          int count = 0;
-          
-          for(int i = 0 ; i<n ;i++){
-              sum = sum + arr[i];
+        int sum = 0;
+        int count  = 0;
+        
+        
+        for( int i = 0 ; i<n ; i++){
+            
+            sum = sum + arr[i];
+            
+            if( sum == 0)
+              count ++;
               
-              if(sum == 0)
-              count = count +1;
-              
-              if(hs.containsKey(sum))
+             if(hs.containsKey(sum))
+             {
                  count = count + hs.get(sum);
                  
-            if(hs.containsKey(sum))
-               hs.put(sum,hs.get(sum));
-               
-              else
-              hs.put(sum,1);
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-          }
-          
-          if(count>=1)
+                 
+             }
+            
+            if(!hs.containsKey(sum))
+               hs.put(sum,1);
+            else
+            
+              hs.put(sum, hs.get(sum)+1);
+            
+            
+            
+            
+            
+            
+        }
+        
+        if(count > 0)
           return true;
-          
           
           else
           
-          return false;
+           return false;
         
         
         //Your code here
