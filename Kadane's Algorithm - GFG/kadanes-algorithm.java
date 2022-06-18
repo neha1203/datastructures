@@ -39,18 +39,16 @@ class Solution{
         int max = arr[0];
         int res = arr[0];
         
-        
-        
-        for( int i =1 ; i<n ;i++){
+        for( int i = 1 ; i<n ; i++){
             
-            max  = Math.max(arr[i],arr[i]+max);
-            res = Math.max(res,max);
+            max = Math.max(arr[i], max+arr[i]);
+            res = Math.max(max,res);
+            
             
             
         }
         
-        return res;
-        
+      return res;  
         // Your code here
         
     }
